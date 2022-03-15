@@ -1,4 +1,4 @@
-//package com.example.webpos.cli;
+package com.example.webpos.cli;//package com.example.webpos.cli;
 //
 //import com.example.webpos.biz.PosService;
 //import com.example.webpos.model.Product;

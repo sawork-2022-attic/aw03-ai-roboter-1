@@ -1,7 +1,6 @@
 package com.example.webpos.web;
 
 import com.example.webpos.biz.PosService;
-import com.example.webpos.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +18,16 @@ public class PosController {
 
     @GetMapping("/")
     public String pos(Model model) {
-        posService.add("PD1",2);
+//        posService.add("PD1", 2);
         model.addAttribute("products", posService.products());
         model.addAttribute("cart", posService.getCart());
         return "index";
     }
+
+    @GetMapping("/charge")
+    public String charge() {
+        return "charge";
+    }
+
+
 }

@@ -6,18 +6,23 @@ import com.example.webpos.model.Product;
 import java.util.List;
 
 public interface PosService {
-    public Cart getCart();
+    Cart getCart();
 
-    public Cart newCart();
+    Cart newCart();
 
-    public void checkout(Cart cart);
+    void checkout(Cart cart);
 
-    public void total(Cart cart);
+    void total(Cart cart);
 
-    public boolean add(Product product, int amount);
+    boolean add(Product product, int amount);
 
-    public boolean add(String productId, int amount);
+    boolean add(String productId, int amount);
 
+    boolean modify(String productId, int amount);
 
-    public List<Product> products();
+    boolean delete(String productId);
+
+    List<Product> products();
+
+    boolean empty();
 }

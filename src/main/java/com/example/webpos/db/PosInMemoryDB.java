@@ -9,7 +9,7 @@ import java.util.List;
 
 @Component
 public class PosInMemoryDB implements PosDB {
-    private List<Product> products = new ArrayList<>();
+    private final List<Product> products = new ArrayList<>();
 
     private Cart cart;
 

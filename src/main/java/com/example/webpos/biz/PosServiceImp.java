@@ -1,5 +1,6 @@
 package com.example.webpos.biz;
 
+
 import com.example.webpos.db.PosDB;
 import com.example.webpos.model.Cart;
 import com.example.webpos.model.Item;
@@ -21,7 +22,6 @@ public class PosServiceImp implements PosService {
 
     @Override
     public Cart getCart() {
-
         Cart cart = posDB.getCart();
         if (cart == null){
             cart = this.newCart();
@@ -51,6 +51,10 @@ public class PosServiceImp implements PosService {
 
     @Override
     public boolean add(String productId, int amount) {
+        if (getCart() == null)
+            return false;
+
+        if (amount < 0) return false;
 
         Product product = posDB.getProduct(productId);
         if (product == null) return false;
@@ -60,7 +64,31 @@ public class PosServiceImp implements PosService {
     }
 
     @Override
+    public boolean modify(String productId, int amount) {
+        if (getCart() == null)
+            return false;
+        if (amount == 0)
+            delete(productId);
+        if (amount < 0) {
+            return false;
+        }
+        return getCart().modifyItem(productId, amount);
+    }
+
+    @Override
+    public boolean delete(String productId) {
+        if (getCart() == null)
+            return false;
+        return getCart().deleteItem(productId);
+    }
+
+    @Override
     public List<Product> products() {
         return posDB.getProducts();
+    }
+
+    @Override
+    public boolean empty() {
+        return getCart().empty();
     }
 }

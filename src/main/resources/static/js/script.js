@@ -105,8 +105,42 @@ $(document).ready(function() {
            
         }); // each end.//
     } // end if
-	
 
-}); 
+    function modify(productId, change) {
+        const current = $(`#${productId}-quantity`).text()
+        const amount = change + Number(current)
+        if (amount === 0)
+            return;
+        const data = {
+            productId,
+            quantity: amount
+        };
+        $.ajax( {
+            url: "/item/modify/" + productId,
+            type: "POST",
+            contentType : "application/json;charset=UTF-8",
+            data: JSON.stringify(data),
+            dataType: "json",
+            success: (rep) => {
+                if (rep["success"] === "1") {
+                    $(`#${productId}-quantity`).text(amount)
+                }
+            },
+        })
+    }
+
+    $(".fa-plus").on("click", (event) => {
+        const source = event.currentTarget
+        const id = source.id.replace("-plus", "")
+        modify(id, 1)
+    })
+    $(".fa-minus").on("click", (event) => {
+        const source = event.currentTarget
+        const id = source.id.replace("-minus", "")
+        modify(id, -1)
+    })
+});
+
+
 // jquery end
 
