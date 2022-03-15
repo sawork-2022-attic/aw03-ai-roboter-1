@@ -162,8 +162,8 @@
 	<td class="text-center"> 
 		<div class="m-btn-group m-btn-group--pill btn-group mr-2" role="group" aria-label="..." >
 																		<button type="button"
-                                                                                class="m-btn btn btn-default"><i
                                                                                 th:id="${item.product.id + '-minus'}"
+                                                                                class="m-btn btn btn-default minus"><i
                                                                                 class="fa fa-minus"></i></button>
 																		<button type="button"
                                                                                 class="m-btn btn btn-default"
@@ -171,16 +171,17 @@
                                                                                 th:id="${item.product.id + '-quantity'}"
                                                                         ></span></button>
 																		<button type="button"
-                                                                                class="m-btn btn btn-default"
+                                                                                class="m-btn btn btn-default plus"
+                                                                                th:id="${item.product.id + '-plus'}"
                                                                         >
                                                                             <i
-                                                                                    th:id="${item.product.id + '-plus'}"
+
                                                                                     class="fa fa-plus"></i></button>
 																	</div>
 	</td>
 	<td> 
 		<div class="price-wrap"> 
-			<var class="price"><span th:text="${item.product.price}"></span></var>
+			<var class="price"><span th:text="${item.product.price}" th:id="${item.product.id + '-price'}"></span></var>
 		</div> <!-- price-wrap .// -->
 	</td>
 	<td class="text-right"> 
@@ -206,7 +207,7 @@
                     </dl>
                     <dl class="dlist-align">
                         <dt>Total:</dt>
-                        <dd class="text-right h4 b" th:text="${cart.itemsTotalPrice()}"></dd>
+                        <dd class="text-right h4 b" th:text="${cart.itemsTotalPrice()}" id="totalPrice"></dd>
                     </dl>
                     <div class="row">
                         <div class="col-md-6">

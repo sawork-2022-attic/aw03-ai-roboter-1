@@ -124,17 +124,19 @@ $(document).ready(function() {
             success: (rep) => {
                 if (rep["success"] === "1") {
                     $(`#${productId}-quantity`).text(amount)
+                    const totalPrice = "#totalPrice"
+                    $(totalPrice).text(Number($(totalPrice).text()) + change * Number($(`#${productId}-price`).text()))
                 }
             },
         })
     }
 
-    $(".fa-plus").on("click", (event) => {
+    $(".plus").on("click", (event) => {
         const source = event.currentTarget
         const id = source.id.replace("-plus", "")
         modify(id, 1)
     })
-    $(".fa-minus").on("click", (event) => {
+    $(".minus").on("click", (event) => {
         const source = event.currentTarget
         const id = source.id.replace("-minus", "")
         modify(id, -1)
